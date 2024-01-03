@@ -5,6 +5,11 @@ import app.db as db
 
 views = Blueprint("views", __name__)
 
+@views.route("/")
+def home():
+    if "session_id" in session and authorize_user(session["session_id"]):
+        return redirect(url_for("views.inventory"))
+    return redirect(url_for("views.login"))
 
 @views.route("/login")
 def login():
@@ -47,4 +52,4 @@ def inventory():
 
     products = db.get_all_products( order_by=order_by, order=order)
     reverse_order = "desc" if order == "asc" else "asc"
-    return render_template("inventory.html", products=products, order_by=order_by, reverse_order=reverse_order)
+    return render_template("inventory.html", products=products, reverse_order=reverse_order)
