@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS user(
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(30) NOT NULL,
-    session VARCHAR(36)
+    session_id VARCHAR(36)
 );
 
 CREATE TABLE IF NOT EXISTS supplier(
@@ -56,3 +56,18 @@ CREATE TABLE IF NOT EXISTS purchase_detail(
     FOREIGN KEY (product_id) REFERENCES product (id),
     FOREIGN KEY (purchase_id) REFERENCES purchase (id)
 );
+
+
+INSERT INTO user (username, password) VALUES ('admin', 'admin');
+INSERT INTO product (name, current_price, quantity) VALUES 
+('product1', 10, 10),
+('product2', 20, 20),
+('product3', 30, 30),
+('product4', 40, 40),
+('product5', 50, 50),
+('product6', 60, 60),
+('product7', 70, 70),
+('product8', 80, 80),
+('product9', 90, 90),
+('product10', 100, 100);
+
